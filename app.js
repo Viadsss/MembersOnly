@@ -4,6 +4,7 @@ const path = require("path");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const db = require("./db/queries");
 
 const assetsPath = path.join(__dirname, "public");
 const app = express();
@@ -21,6 +22,37 @@ app.use(
 );
 app.use(express.static(assetsPath));
 app.use(express.urlencoded({ extended: true }));
+
+passport.use(
+  new LocalStrategy(async (username, password, done) => {
+    try {
+      const user = await db.getUserByUsername(username);
+
+      if (!user) {
+        return done(null, false, { message: "Incorrect username" });
+      }
+      if (user.password !== password) {
+        return done(null, false, { message: "Incorrect password" });
+      }
+      return done(null, user);
+    } catch (err) {
+      return done(err);
+    }
+  })
+);
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await db.getUserById(id);
+    done(null, user);
+  } catch (err) {
+    done(err);
+  }
+});
 
 // Routers
 const indexRouter = require("./routes/indexRouter");
