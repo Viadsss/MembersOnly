@@ -20,6 +20,7 @@ app.use(
     cookie: { maxAge: 1000 * 60 * 60 * 24 }, // 1 day
   })
 );
+app.use(passport.session());
 app.use(express.static(assetsPath));
 app.use(express.urlencoded({ extended: true }));
 
