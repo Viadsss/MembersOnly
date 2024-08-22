@@ -14,8 +14,7 @@ CREATE TABLE IF NOT EXISTS users (
     last_name VARCHAR (255) NOT NULL,
     username VARCHAR (255) UNIQUE NOT NULL,
     password VARCHAR (255) NOT NULL,
-    membership_status BOOLEAN NOT NULL,
-    admin_status BOOLEAN NOT NULL
+    is_admin BOOLEAN DEFAULT FALSE NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS messages (
@@ -26,11 +25,11 @@ CREATE TABLE IF NOT EXISTS messages (
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO users (first_name, last_name, username, password, membership_status, admin_status)
+INSERT INTO users (first_name, last_name, username, password, is_admin)
 VALUES 
-    ('John', 'Doe', 'johndoe', 'password123', TRUE, FALSE),
-    ('Jane', 'Smith', 'janesmith', 'password456', TRUE, TRUE),
-    ('Alice', 'Johnson', 'alicej', 'password789', FALSE, FALSE);
+    ('John', 'Doe', 'johndoe', 'password123', FALSE),
+    ('Jane', 'Smith', 'janesmith', 'password456', TRUE),
+    ('Alice', 'Johnson', 'alicej', 'password789', FALSE);
 
 INSERT INTO messages (author_id, title, content)
 VALUES 

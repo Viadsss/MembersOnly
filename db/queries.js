@@ -15,7 +15,7 @@ async function getMessagesWithAuthors() {
         users 
     ON 
         messages.author_id = users.id;
-  `
+    `
   );
 
   return rows;
@@ -36,11 +36,29 @@ async function getUserById(id) {
   const { rows } = await pool.query(
     `
     SELECT * FROM users WHERE id = $1
-        `,
+    `,
     [id]
   );
 
   return rows[0];
 }
 
-module.exports = { getMessagesWithAuthors, getUserByUsername, getUserById };
+async function insertUser(first_name, last_name, username, password) {
+  const { rows } = await pool.query(
+    `
+    INSERT INTO users (first_name, last_name, username, password)
+    VALUES ($1, $2, $3, $4) 
+    RETURNING * 
+  `,
+    [first_name, last_name, username, password]
+  );
+
+  return rows[0];
+}
+
+module.exports = {
+  getMessagesWithAuthors,
+  getUserByUsername,
+  getUserById,
+  insertUser,
+};
