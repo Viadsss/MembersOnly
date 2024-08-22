@@ -1,9 +1,9 @@
 const asyncHandler = require("express-async-handler");
 const passport = require("passport");
 const db = require("../db/queries");
+const bcrpyt = require("bcryptjs");
 
 exports.indexGet = asyncHandler(async (req, res) => {
-  const messages = await db.getMessagesWithAuthors();
   console.log({ messages, user: req.user });
   res.render("index", { user: req.user });
 });
@@ -14,7 +14,14 @@ exports.signUpGet = (req, res) => {
 
 exports.signUpPost = asyncHandler(async (req, res, next) => {
   const { first_name, last_name, username, password } = req.body;
-  const user = await db.insertUser(first_name, last_name, username, password);
+
+  const hashedPassword = await bcrpyt.hash(password, 10);
+  const user = await db.insertUser(
+    first_name,
+    last_name,
+    username,
+    hashedPassword
+  );
 
   req.logIn(user, (err) => {
     if (err) {
