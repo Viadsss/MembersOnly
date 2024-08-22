@@ -27,16 +27,14 @@ CREATE TABLE IF NOT EXISTS messages (
 
 INSERT INTO users (first_name, last_name, username, password, is_admin)
 VALUES 
-    ('John', 'Doe', 'johndoe', 'password123', FALSE),
-    ('Jane', 'Smith', 'janesmith', 'password456', TRUE),
-    ('Alice', 'Johnson', 'alicej', 'password789', FALSE);
+    ('John', 'Doe', 'johndoe', '$2a$10$aB8ScB41woadh9X.W6WxM.dCYIfNtn2ytZ89E7kvB4vPMoaTGtUju', FALSE),
+    ('Jane', 'Smith', 'janesmith', '$2a$10$Ygj4U6SiiH7gMc9Na7ZzyOxAE71PqpjHOP5w9PgaZClMxu1mZ38RC', TRUE);
 
 INSERT INTO messages (author_id, title, content)
 VALUES 
     (1, 'Welcome to the Forum', 'Hello everyone, welcome to our new forum!'),
     (2, 'Admin Announcement', 'Please make sure to follow the forum rules.'),
-    (1, 'General Discussion', 'Feel free to discuss anything here.'),
-    (3, 'Inactive User Post', 'This post is from an inactive user.');
+    (1, 'General Discussion', 'Feel free to discuss anything here.');
 `;
 
 async function main() {
