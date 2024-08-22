@@ -56,9 +56,21 @@ async function insertUser(first_name, last_name, username, password) {
   return rows[0];
 }
 
+async function doesUsernameExist(username) {
+  const { rows } = await pool.query(
+    `
+    SELECT * FROM users WHERE username = $1
+    `,
+    [username]
+  );
+
+  return rows.length > 0;
+}
+
 module.exports = {
   getMessagesWithAuthors,
   getUserByUsername,
   getUserById,
   insertUser,
+  doesUsernameExist,
 };
