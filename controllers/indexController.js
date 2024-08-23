@@ -3,6 +3,7 @@ const passport = require("passport");
 const db = require("../db/queries");
 const bcrpyt = require("bcryptjs");
 const { body, validationResult } = require("express-validator");
+const { isAuth, isAdmin } = require("../utils/authMiddleware");
 
 const validateSignUp = [
   body("first_name")
@@ -110,3 +111,17 @@ exports.logInPost = passport.authenticate("local", {
   failureRedirect: "/log-in",
   failureMessage: true,
 });
+
+exports.protectedGet = [
+  isAuth,
+  (req, res) => {
+    res.send("Hello auth protected");
+  },
+];
+
+exports.adminGet = [
+  isAdmin,
+  (req, res) => {
+    res.send("Hello admin");
+  },
+];
