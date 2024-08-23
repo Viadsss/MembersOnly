@@ -6,6 +6,7 @@
   </head>
   <body>
     <h1>please log in</h1>
+    <%- include('partials/errors') %>
     <form action="/log-in" method="POST">
       <label for="username">Username</label>
       <input id="username" name="username" placeholder="username" type="text" />
