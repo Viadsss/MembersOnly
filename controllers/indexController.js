@@ -9,8 +9,10 @@ const validateSignUp = [
     .trim()
     .notEmpty()
     .withMessage("First name is required")
+    .bail()
     .isAlpha("en-US", { ignore: " " })
     .withMessage("First name should only contain letters and spaces")
+    .bail()
     .isLength({ max: 50 })
     .withMessage("First name must not exceed 50 characters"),
 
@@ -18,8 +20,10 @@ const validateSignUp = [
     .trim()
     .notEmpty()
     .withMessage("Last name is required")
+    .bail()
     .isAlpha("en-US", { ignore: " " })
     .withMessage("Last name should only contain letters and spaces")
+    .bail()
     .isLength({ max: 50 })
     .withMessage("Last name must not exceed 50 characters"),
 
@@ -27,14 +31,17 @@ const validateSignUp = [
     .trim()
     .notEmpty()
     .withMessage("Username is required")
+    .bail()
     .isAlphanumeric()
     .withMessage("Username must contain only letters and numbers")
+    .bail()
     .isLength({ min: 3, max: 20 })
     .withMessage("Username must be between 3 and 20 characters long"),
 
   body("password")
     .notEmpty()
     .withMessage("Password is required")
+    .bail()
     .isLength({ min: 6 })
     .withMessage("Password must be at least 6 characters long"),
 ];
