@@ -4,6 +4,8 @@ const path = require("path");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const pool = require("./db/pool");
+const PgSession = require("connect-pg-simple")(session);
 const db = require("./db/queries");
 const bcrypt = require("bcryptjs");
 
@@ -15,6 +17,11 @@ app.set("view engine", "ejs");
 
 app.use(
   session({
+    store: new PgSession({
+      pool: pool,
+      tableName: "sessions",
+      createTableIfMissing: true,
+    }),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
