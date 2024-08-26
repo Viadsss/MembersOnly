@@ -2,17 +2,32 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
+    />
+    <link rel="stylesheet" href="/css/global.css" />
+    <title>Document</title>
   </head>
   <body>
-    <h1>please log in</h1>
-    <%- include('partials/errors') %>
-    <form action="/log-in" method="POST">
-      <label for="username">Username</label>
-      <input id="username" name="username" placeholder="username" type="text" />
-      <label for="password">Password</label>
-      <input id="password" name="password" type="password" />
-      <button>Log In</button>
-    </form>
+    <div id="content">
+      <%- include('partials/navigation') %>
+      <h1>please log in</h1>
+      <%- include('partials/errors') %>
+      <form action="/log-in" method="POST">
+        <label for="username">Username</label>
+        <input
+          id="username"
+          name="username"
+          placeholder="username"
+          type="text"
+        />
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" />
+        <button>Log In</button>
+      </form>
+    </div>
+    <script src="/js/navigation.js"></script>
   </body>
 </html>

@@ -2,15 +2,34 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
+    />
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <title>Document</title>
   </head>
   <body>
-    <h1>Members Only</h1>
-    <% if (user) {%>
-    <h1>WELCOME BACK <%= user.username %></h1>
-    <a href="/log-out">LOG OUT</a>
-    <% } else { %>
-    <a href="/log-in">LOG IN</a>
-    <%}%>
+    <div id="content">
+      <%- include('partials/navigation') %>
+      <main class="box">
+        <div class="video-background">
+          <video autoplay muted loop>
+            <source src="/videos/club-landing.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="video-content">
+          <div class="welcome">
+            <h1>Welcome to the HideSpot</h1>
+            <a href="/log-in" class="button">Enter</a>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="/js/navigation.js"></script>
   </body>
 </html>

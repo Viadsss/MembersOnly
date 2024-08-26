@@ -1,0 +1,24 @@
+<header>
+  <div class="left-header">
+    <a href="/">
+      <img src="/imgs/Logo.svg" alt="logo" />
+      <div>HideSpot</div>
+    </a>
+  </div>
+  <div class="right-header">
+    <nav id="navMenu">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <% if (locals.user) { %>
+        <li><a href="/log-out">Log Out</a></li>
+        <% } else { %>
+        <li><a href="/log-in">Log In</a></li>
+        <li><a href="/sign-up">Sign Up</a></li>
+        <% } %>
+      </ul>
+    </nav>
+    <div class="burger-menu" onclick="toggleMenu()">
+      <i class="ti ti-menu-2"></i>
+    </div>
+  </div>
+</header>
