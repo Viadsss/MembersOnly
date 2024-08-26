@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --swamp-yellow: #bfc500;
+  --dark-grey: #272626;
+  --light-grey: #4b4a4a;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+}
+
+#content {
+  min-height: 100vh;
+  padding: 0 4rem;
+  margin: 0 auto;
+  max-width: 1750px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.left-header {
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.left-header a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.right-header {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  gap: 1rem;
+}
+
+#navMenu {
+  display: flex;
+  text-align: center;
+}
+
+#navMenu > ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  column-gap: 2rem;
+  row-gap: 6rem;
+}
+
+#navMenu > ul > li > a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+#navMenu.show {
+  display: flex;
+}
+
+.burger-menu {
+  display: none;
+  cursor: pointer;
+}
+
+main {
+  min-height: calc(100vh - 3.2rem);
+}
+
+/* Mobile navigation menu styles */
+@media (max-width: 768px) {
+  #content {
+    padding: 0 1rem;
+  }
+
+  #navMenu {
+    display: none;
+    position: absolute;
+    top: 3rem;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 3rem);
+    border: 1px solid pink;
+    justify-items: center;
+    flex-direction: column;
+    z-index: 1000;
+  }
+
+  #navMenu > ul {
+    text-align: center;
+    padding-top: 5rem;
+    flex-direction: column;
+  }
+
+  .burger-menu {
+    display: block;
+  }
+}
