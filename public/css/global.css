@@ -135,11 +135,15 @@ header {
 }
 
 .change .bar3 {
-  transform: translate(0, -11px) rotate(45deg);
+  transform: translate(0, -8px) rotate(45deg);
 }
 
 main {
   min-height: calc(100vh - 3.2rem);
+  height: calc(100vh - 3.2rem);
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 /* Mobile navigation menu styles */

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/global.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="content">
+      <%- include('partials/navigation') %> <% if (locals.success) { %>
+      <div class="success-message">
+        <p>Congratulations! You are now an admin.</p>
+        <p>As an admin, you now have the ability to:</p>
+        <ul>
+          <li>Delete messages</li>
+        </ul>
+        <a href="/">Okay</a>
+      </div>
+      <% } else { %>
+      <div>Become admin</div>
+      <div>
+        Enter the secret passcode <span>HideSPOTadmin</span> to become an admin.
+      </div>
+      <%- include('partials/errors') %>
+      <form action="/admin" method="POST">
+        <label for="passcode">Secret Passcode: </label>
+        <input id="passcode" name="passcode" type="text" />
+        <button type="submit">Become admin</button>
+      </form>
+      <% } %>
+    </div>
+  </body>
+</html>

@@ -3,10 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
-    />
     <link rel="stylesheet" href="/css/global.css" />
     <link rel="stylesheet" href="/css/index.css" />
     <title>Document</title>
@@ -15,6 +11,32 @@
     <div id="content">
       <%- include('partials/navigation') %>
       <main class="box">
+        <% if (locals.user) { %>
+        <div class="main-top">
+          <div>Hello, <%= user.username %>!</div>
+          <div>Create Message here</div>
+        </div>
+        <div class="posts">
+          <% messages.forEach(message => { %>
+          <div class="post">
+            <h1><%= message.title %></h1>
+            <p>
+              By
+              <span
+                >@<%= user.is_member ? message.username : "Anonymous User"
+                %></span
+              >
+              - <%= message.created_at_text %>
+            </p>
+            <p><%= message.content %></p>
+            <% if (user.is_admin) { %>
+            <button>Delete</button>
+            <% } %>
+          </div>
+          <% }) %>
+        </div>
+
+        <% } else { %>
         <div class="video-background">
           <video autoplay muted loop>
             <source src="/videos/club-landing.mp4" type="video/mp4" />
@@ -27,6 +49,7 @@
             <a href="/log-in" class="button">Enter</a>
           </div>
         </div>
+        <% } %>
       </main>
     </div>
 

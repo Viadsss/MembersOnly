@@ -1,9 +1,3 @@
-main {
-  position: relative;
-  display: flex;
-  overflow: hidden;
-}
-
 .video-background {
   padding: 1rem 0;
   position: absolute;
@@ -30,6 +24,7 @@ main {
   justify-content: flex-end;
   flex-direction: column;
   width: 100%;
+  height: inherit;
 }
 
 .welcome {
@@ -70,6 +65,22 @@ main {
 .button:active {
   background-color: var(--black); /* Change background on click */
   color: var(--swamp-yellow); /* Change text color on click */
+}
+
+.main-top {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+
+.posts > .post {
+  background: var(--dark-grey);
 }
 
 @media (max-width: 768px) {

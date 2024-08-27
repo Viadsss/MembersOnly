@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/global.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="content">
+      <%- include('partials/navigation') %> <% if (locals.success) { %>
+      <div class="success-message">
+        <p>Congratulations! You are now a member.</p>
+        <p>As a member, you can now:</p>
+        <ul>
+          <li>See who posted each message</li>
+          <li>View when each message was posted</li>
+        </ul>
+        <a href="/">Okay</a>
+      </div>
+      <% } else { %>
+      <div>Join the Club</div>
+      <div>
+        Enter the secret passcode <span>HideSPOT</span> to join the club.
+      </div>
+      <%- include('partials/errors') %>
+      <form action="/join-club" method="POST">
+        <label for="passcode">Secret Passcode: </label>
+        <input id="passcode" name="passcode" type="text" />
+        <button type="submit">Join</button>
+      </form>
+      <% } %>
+    </div>
+  </body>
+</html>

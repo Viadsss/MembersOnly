@@ -4,6 +4,7 @@ const db = require("../db/queries");
 const bcrpyt = require("bcryptjs");
 const { body, validationResult } = require("express-validator");
 const { isAuth, isAdmin } = require("../utils/authMiddleware");
+const { formatDistance } = require("date-fns");
 
 const validateSignUp = [
   body("first_name")
@@ -48,7 +49,16 @@ const validateSignUp = [
 ];
 
 exports.indexGet = asyncHandler(async (req, res) => {
-  res.render("index", { user: req.user });
+  const messages = await db.getMessagesWithAuthors();
+
+  const formattedMessages = messages.map((message) => ({
+    ...message,
+    created_at_text: formatDistance(new Date(message.created_at), new Date(), {
+      addSuffix: true,
+    }),
+  }));
+
+  res.render("index", { user: req.user, messages: formattedMessages });
 });
 
 exports.signUpGet = (req, res) => {
@@ -99,6 +109,8 @@ exports.logOutGet = (req, res, next) => {
 };
 
 exports.logInGet = (req, res) => {
+  if (req.user) res.redirect("/");
+
   const errors = req.session.messages
     ? [{ msg: req.session.messages.pop() }]
     : null;
@@ -112,16 +124,56 @@ exports.logInPost = passport.authenticate("local", {
   failureMessage: true,
 });
 
-exports.protectedGet = [
+exports.joinClubGet = [
   isAuth,
   (req, res) => {
-    res.send("Hello auth protected");
+    if (req.user.is_member) {
+      return res.redirect("/");
+    }
+
+    res.render("join-club", { user: req.user });
   },
 ];
 
+exports.joinClubPost = asyncHandler(async (req, res) => {
+  const { passcode } = req.body;
+  const id = req.user.id;
+  const correctPasscode = "HideSPOT";
+
+  if (passcode !== correctPasscode) {
+    return res.status(400).render("join-club", {
+      user: req.user,
+      errors: [{ msg: "Incorrect secret passcode" }],
+    });
+  }
+
+  await db.updateMemberStatus(id);
+  res.render("join-club", { success: true });
+});
+
 exports.adminGet = [
-  isAdmin,
+  isAuth,
   (req, res) => {
-    res.send("Hello admin");
+    if (req.user.is_admin) {
+      return res.redirect("/");
+    }
+
+    res.render("admin", { user: req.user });
   },
 ];
+
+exports.adminPost = asyncHandler(async (req, res) => {
+  const { passcode } = req.body;
+  const id = req.user.id;
+  const correctPasscode = "HideSPOTadmin";
+
+  if (passcode !== correctPasscode) {
+    return res.status(400).render("admin", {
+      user: req.user,
+      errors: [{ msg: "Incorrect secret passcode" }],
+    });
+  }
+
+  await db.updateAdminStatus(id);
+  res.render("admin", { success: true });
+});
