@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/global.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="content">
+      <%- include('partials/navigation') %>
+      <h1>Create Message here</h1>
+      <%- include('partials/errors') %>
+      <form action="/messages/create" method="POST">
+        <div>
+          <label for="title">Title</label>
+          <input id="title" name="title" type="text" />
+        </div>
+        <div>
+          <label for="contentForm">Content:</label>
+          <textarea
+            id="contentForm"
+            name="content"
+            rows="5"
+            cols="50"
+          ></textarea>
+        </div>
+        <button type="submit">Create Message</button>
+      </form>
+    </div>
+    <script src="/js/navigation.js"></script>
+  </body>
+</html>

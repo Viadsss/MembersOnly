@@ -67,8 +67,10 @@ passport.deserializeUser(async (id, done) => {
 
 // Routers
 const indexRouter = require("./routes/indexRouter");
+const messageRouter = require("./routes/messageRouter");
 
 app.use("/", indexRouter);
+app.use("/messages", messageRouter);
 
 app.use((err, req, res, next) => {
   console.error(err);

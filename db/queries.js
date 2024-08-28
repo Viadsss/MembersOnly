@@ -37,6 +37,17 @@ async function getUserById(id) {
   return rows[0];
 }
 
+async function getMessageById(id) {
+  const { rows } = await pool.query(
+    `
+    SELECT * FROM messages WHERE id = $1
+    `,
+    [id]
+  );
+
+  return rows[0];
+}
+
 async function doesUsernameExist(username) {
   const { rows } = await pool.query(
     `
@@ -56,6 +67,19 @@ async function insertUser(first_name, last_name, username, password) {
     RETURNING * 
   `,
     [first_name, last_name, username, password]
+  );
+
+  return rows[0];
+}
+
+async function insertMessage(author_id, title, content) {
+  const { rows } = await pool.query(
+    `
+    INSERT INTO messages (author_id, title, content)
+    VALUES ($1, $2, $3)
+    RETURNING *
+    `,
+    [author_id, title, content]
   );
 
   return rows[0];
@@ -83,12 +107,25 @@ async function updateAdminStatus(id) {
   );
 }
 
+async function deleteMessage(id) {
+  await pool.query(
+    `
+    DELETE FROM messages
+    WHERE id = $1 
+    `,
+    [id]
+  );
+}
+
 module.exports = {
   getMessagesWithAuthors,
   getUserByUsername,
   getUserById,
+  getMessageById,
   doesUsernameExist,
   insertUser,
+  insertMessage,
   updateMemberStatus,
   updateAdminStatus,
+  deleteMessage,
 };

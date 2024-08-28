@@ -3,7 +3,7 @@ const passport = require("passport");
 const db = require("../db/queries");
 const bcrpyt = require("bcryptjs");
 const { body, validationResult } = require("express-validator");
-const { isAuth, isAdmin } = require("../utils/authMiddleware");
+const { isAuth } = require("../utils/authMiddleware");
 const { formatDistance } = require("date-fns");
 
 const validateSignUp = [
@@ -62,6 +62,7 @@ exports.indexGet = asyncHandler(async (req, res) => {
 });
 
 exports.signUpGet = (req, res) => {
+  if (req.user) return res.redirect("/");
   res.render("sign-up");
 };
 
@@ -75,7 +76,7 @@ exports.signUpPost = [
 
     const { first_name, last_name, username, password } = req.body;
 
-    const usernameExists = db.doesUsernameExist(username);
+    const usernameExists = await db.doesUsernameExist(username);
     if (usernameExists) {
       return res
         .status(400)
@@ -109,7 +110,7 @@ exports.logOutGet = (req, res, next) => {
 };
 
 exports.logInGet = (req, res) => {
-  if (req.user) res.redirect("/");
+  if (req.user) return res.redirect("/");
 
   const errors = req.session.messages
     ? [{ msg: req.session.messages.pop() }]
@@ -158,6 +159,10 @@ exports.adminGet = [
       return res.redirect("/");
     }
 
+    if (!req.user.is_member) {
+      return res.redirect("/join-club");
+    }
+
     res.render("admin", { user: req.user });
   },
 ];
@@ -175,5 +180,5 @@ exports.adminPost = asyncHandler(async (req, res) => {
   }
 
   await db.updateAdminStatus(id);
-  res.render("admin", { success: true });
+  res.render("admin", { user: req.user, success: true });
 });

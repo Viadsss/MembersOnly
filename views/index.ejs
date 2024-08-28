@@ -14,7 +14,7 @@
         <% if (locals.user) { %>
         <div class="main-top">
           <div>Hello, <%= user.username %>!</div>
-          <div>Create Message here</div>
+          <a href="/messages/create">Create Message</a>
         </div>
         <div class="posts">
           <% messages.forEach(message => { %>
@@ -30,7 +30,9 @@
             </p>
             <p><%= message.content %></p>
             <% if (user.is_admin) { %>
-            <button>Delete</button>
+            <form action="/messages/<%= message.id %>/delete" method="POST">
+              <button type="submit">Delete</button>
+            </form>
             <% } %>
           </div>
           <% }) %>
