@@ -112,9 +112,10 @@ exports.logOutGet = (req, res, next) => {
 exports.logInGet = (req, res) => {
   if (req.user) return res.redirect("/");
 
-  const errors = req.session.messages
-    ? [{ msg: req.session.messages.pop() }]
-    : null;
+  const errors =
+    req.session.messages && req.session.messages.length
+      ? [{ msg: req.session.messages.pop() }]
+      : [];
 
   res.render("log-in", { errors });
 };
