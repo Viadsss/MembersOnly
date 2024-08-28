@@ -9,34 +9,28 @@
   <body>
     <div id="content">
       <%- include('partials/navigation') %>
-      <h1>Sign Up</h1>
-      <%- include('partials/errors') %>
-      <form action="" method="POST">
-        <label for="first_name">First Name</label>
-        <input
-          id="first_name"
-          name="first_name"
-          placeholder="First Name"
-          type="text"
-        />
-        <label for="last_name">Last Name</label>
-        <input
-          id="last_name"
-          name="last_name"
-          placeholder="Last Name"
-          type="text"
-        />
-        <label for="username">Username</label>
-        <input
-          id="username"
-          name="username"
-          placeholder="username"
-          type="text"
-        />
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password" />
-        <button type="submit">Sign Up</button>
-      </form>
+      <main>
+        <div class="form-container">
+          <div class="form-content">
+            <h1>Sign Up</h1>
+            <%- include('partials/errors') %>
+            <form action="" method="POST">
+              <label for="first_name">First Name</label>
+              <input id="first_name" name="first_name" type="text" />
+              <label for="last_name">Last Name</label>
+              <input id="last_name" name="last_name" type="text" />
+              <label for="username">Username</label>
+              <input id="username" name="username" type="text" />
+              <label for="password">Password</label>
+              <input id="password" name="password" type="password" />
+              <button type="submit">Sign Up</button>
+              <div class="form-info">
+                Already have an account? <a href="/log-in">Log In</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
     </div>
     <script src="/js/navigation.js"></script>
   </body>
