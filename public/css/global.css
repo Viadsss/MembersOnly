@@ -149,7 +149,6 @@ main {
   height: 100%;
   display: grid;
   position: relative;
-  outline: 1px solid crimson;
 }
 
 ul.errors {
@@ -168,93 +167,6 @@ ul.errors li {
 
 ul.errors li:last-child {
   margin-bottom: 0;
-}
-
-.form-container {
-  min-height: inherit;
-  height: inherit;
-  display: grid;
-  place-items: center;
-  padding: 2rem 0;
-  outline: 1px solid pink;
-}
-
-.form-content {
-  max-width: 30rem;
-  width: 100%;
-  padding: 2rem;
-  border-radius: 1rem;
-  background: var(--dark-grey);
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-label {
-  margin-bottom: 0.5rem;
-}
-
-input[type="text"],
-input[type="password"] {
-  width: 100%;
-  background: var(--light-grey);
-  color: white;
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  border: 1px solid #888;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-button:focus,
-input[type="text"]:focus,
-input[type="password"]:focus {
-  border-color: var(--swamp-yellow);
-  outline: none;
-  box-shadow: 0 0 0 0.2rem rgba(223, 230, 15, 0.25);
-  transition: all 0.3s ease;
-}
-
-button {
-  background-color: var(--swamp-yellow);
-  color: var(--black);
-  padding: 0.75rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-button:hover {
-  background-color: var(--swamp-yellow-light);
-}
-
-button:active {
-  background-color: var(--black);
-  color: var(--swamp-yellow);
-}
-
-.form-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  margin-top: 1rem;
-  color: darkgray;
-}
-
-.form-info a {
-  color: var(--swamp-yellow);
-  text-decoration: none;
-  font-weight: bold;
-  margin: 0 auto;
-}
-
-.form-info a:hover {
-  color: var(--swamp-yellow-light);
-  text-decoration: underline;
 }
 
 /* Mobile navigation menu styles */
