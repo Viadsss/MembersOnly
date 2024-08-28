@@ -4,25 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/log-in.css" />
     <title>Document</title>
   </head>
   <body>
     <div id="content">
       <%- include('partials/navigation') %>
-      <h1>please log in</h1>
-      <%- include('partials/errors') %>
-      <form action="/log-in" method="POST">
-        <label for="username">Username</label>
-        <input
-          id="username"
-          name="username"
-          placeholder="username"
-          type="text"
-        />
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password" />
-        <button type="submit">Log In</button>
-      </form>
+      <main>
+        <div class="log-in">
+          <div class="log-in-content">
+            <h1>Log in</h1>
+            <%- include('partials/errors') %>
+            <form action="/log-in" method="POST">
+              <label for="username">Username:</label>
+              <input id="username" name="username" type="text" />
+              <label for="password">Password:</label>
+              <input id="password" name="password" type="password" />
+              <button type="submit">Log In</button>
+            </form>
+            <div class="form-info">
+              Don't have an account? <a href="/sign-up">Sign Up</a>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
     <script src="/js/navigation.js"></script>
   </body>
