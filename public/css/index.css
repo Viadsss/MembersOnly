@@ -32,7 +32,7 @@
   flex-direction: column;
   gap: 1rem;
   max-width: 20rem;
-  font-weight: 900;
+  font-weight: bold;
   padding: 3rem 3rem 3rem 0;
   font-style: italic;
   font-size: 1rem;
@@ -90,7 +90,8 @@
   }
 
   .welcome {
-    padding: 3rem;
+    padding: 2rem;
     text-align: center;
+    margin: 1.5rem;
   }
 }
