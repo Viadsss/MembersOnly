@@ -12,30 +12,32 @@
       <%- include('partials/navigation') %>
       <main class="box">
         <% if (locals.user) { %>
-        <div class="main-top">
-          <div>Hello, <%= user.username %>!</div>
-          <a href="/messages/create">Create Message</a>
-        </div>
-        <div class="posts">
-          <% messages.forEach(message => { %>
-          <div class="post">
-            <h1><%= message.title %></h1>
-            <p>
-              By
-              <span
-                >@<%= user.is_member ? message.username : "Anonymous User"
-                %></span
-              >
-              - <%= message.created_at_text %>
-            </p>
-            <p><%= message.content %></p>
-            <% if (user.is_admin) { %>
-            <form action="/messages/<%= message.id %>/delete" method="POST">
-              <button type="submit">Delete</button>
-            </form>
-            <% } %>
+        <div>
+          <div class="main-top">
+            <div>Hello, <%= user.username %>!</div>
+            <a href="/messages/create">Create Message</a>
           </div>
-          <% }) %>
+          <div class="posts">
+            <% messages.forEach(message => { %>
+            <div class="post">
+              <h1><%= message.title %></h1>
+              <p>
+                By
+                <span
+                  >@<%= user.is_member ? message.username : "Anonymous User"
+                  %></span
+                >
+                - <%= message.created_at_text %>
+              </p>
+              <p><%= message.content %></p>
+              <% if (user.is_admin) { %>
+              <form action="/messages/<%= message.id %>/delete" method="POST">
+                <button type="submit">Delete</button>
+              </form>
+              <% } %>
+            </div>
+            <% }) %>
+          </div>
         </div>
 
         <% } else { %>
