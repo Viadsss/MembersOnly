@@ -38,6 +38,9 @@ VALUES
     (1, 'General Discussion', 'Feel free to discuss anything here.');
 `;
 
+// johndoe : password123
+// janesmith: password456
+
 async function main() {
   console.log("Seeding database...");
   const client = new Client({ connectionString: dbUrl });
