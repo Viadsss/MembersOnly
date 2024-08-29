@@ -14,22 +14,24 @@
         <% if (locals.user) { %>
         <div>
           <div class="main-top">
-            <div>Hello, <%= user.username %>!</div>
-            <a href="/messages/create">Create Message</a>
+            <h2 class="username">Hello, <span>@<%= user.username %>!</span></h2>
+            <a href="/messages/create"
+              >&plus; Create Message <span><%= totalMessages %></span></a
+            >
           </div>
           <div class="posts">
             <% messages.forEach(message => { %>
             <div class="post">
-              <h1><%= message.title %></h1>
-              <p>
+              <h3><%= message.title %></h3>
+              <p class="info">
                 By
-                <span
+                <span class="username"
                   >@<%= user.is_member ? message.username : "Anonymous User"
                   %></span
                 >
                 - <%= message.created_at_text %>
               </p>
-              <p><%= message.content %></p>
+              <p class="content"><%= message.content %></p>
               <% if (user.is_admin) { %>
               <form action="/messages/<%= message.id %>/delete" method="POST">
                 <button type="submit">Delete</button>

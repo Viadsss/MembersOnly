@@ -69,19 +69,101 @@
 
 .main-top {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
-  border: 1px solid pink;
+  padding: 1rem 0;
+}
+
+.main-top .username > span {
+  color: var(--swamp-yellow);
+  text-decoration: underline wavy var(--light-grey);
+}
+
+.main-top a {
+  background-color: var(--dark-grey);
+  color: var(--swamp-yellow);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  position: relative;
+}
+
+.main-top a > span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(30%, -30%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  vertical-align: middle;
+  background-color: var(--swamp-yellow);
+  color: var(--dark-grey);
+  font-weight: 700;
+  font-size: 0.75rem;
+  width: 1.5rem;
+  padding: 0.75rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.main-top a:hover {
+  background-color: var(--swamp-yellow);
+  color: var(--black);
+}
+
+.main-top a:hover > span {
+  background-color: var(--black);
+  color: var(--swamp-yellow);
 }
 
 .posts {
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
+  margin: 1rem 0;
 }
 
 .posts > .post {
   background: var(--dark-grey);
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.75rem;
+}
+
+.post .info {
+  font-size: 0.9rem;
+  color: gainsboro;
+}
+
+.post .username {
+  color: var(--swamp-yellow);
+}
+
+.post .content {
+  margin: 1rem 0 0.75rem 0;
+}
+
+.post button {
+  background-color: #2b2b2b;
+  color: #e71e1e;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid #e71e1e;
+  cursor: pointer;
+}
+
+.post button:hover {
+  background-color: #e71e1e;
+  color: #fff;
+}
+
+.post button:active {
+  background-color: #b40000;
+  color: #fff;
 }
 
 @media (max-width: 768px) {
@@ -94,5 +176,11 @@
     padding: 2rem;
     text-align: center;
     margin: 1.5rem;
+  }
+
+  .main-top {
+    flex-direction: column;
+    text-align: center;
+    row-gap: 1rem;
   }
 }
