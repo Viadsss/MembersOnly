@@ -169,6 +169,43 @@ ul.errors li:last-child {
   margin-bottom: 0;
 }
 
+footer {
+  border-bottom: 2rem solid var(--swamp-yellow);
+}
+
+.footer-content {
+  max-width: 1750px;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  justify-content: space-between;
+  padding: 2rem 0;
+  border-top: 1px solid var(--white);
+}
+
+.footer-content > * {
+  flex: 1;
+  text-align: center;
+  color: gainsboro;
+}
+
+.footer-content img {
+  width: 2.5rem;
+}
+
+.footer-content a {
+  color: var(--swamp-yellow);
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 auto;
+  transition: all 0.5s ease;
+}
+
+.footer-content a:hover {
+  color: var(--swamp-yellow-light);
+  text-decoration: underline;
+}
+
 /* Mobile navigation menu styles */
 @media (max-width: 768px) {
   html {
