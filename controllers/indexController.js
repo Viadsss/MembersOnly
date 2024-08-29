@@ -50,6 +50,7 @@ const validateSignUp = [
 
 exports.indexGet = asyncHandler(async (req, res) => {
   const messages = await db.getMessagesWithAuthors();
+  const totalMessages = await db.getTotalMessages();
 
   const formattedMessages = messages.map((message) => ({
     ...message,
@@ -58,7 +59,11 @@ exports.indexGet = asyncHandler(async (req, res) => {
     }),
   }));
 
-  res.render("index", { user: req.user, messages: formattedMessages });
+  res.render("index", {
+    user: req.user,
+    messages: formattedMessages,
+    totalMessages,
+  });
 });
 
 exports.signUpGet = (req, res) => {

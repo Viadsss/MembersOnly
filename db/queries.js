@@ -48,6 +48,16 @@ async function getMessageById(id) {
   return rows[0];
 }
 
+async function getTotalMessages() {
+  const { rows } = await pool.query(
+    `
+    SELECT COUNT(*) as total FROM messages
+    `
+  );
+
+  return parseInt(rows[0].total);
+}
+
 async function doesUsernameExist(username) {
   const { rows } = await pool.query(
     `
@@ -122,6 +132,7 @@ module.exports = {
   getUserByUsername,
   getUserById,
   getMessageById,
+  getTotalMessages,
   doesUsernameExist,
   insertUser,
   insertMessage,
