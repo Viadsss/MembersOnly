@@ -46,6 +46,10 @@ const validateSignUp = [
     .bail()
     .isLength({ min: 6 })
     .withMessage("Password must be at least 6 characters long"),
+
+  body("confirm_password")
+    .notEmpty()
+    .withMessage("Please confirm your password"),
 ];
 
 exports.indexGet = asyncHandler(async (req, res) => {
@@ -79,13 +83,21 @@ exports.signUpPost = [
       return res.status(400).render("sign-up", { errors: errors.array() });
     }
 
-    const { first_name, last_name, username, password } = req.body;
+    const { first_name, last_name, username, password, confirm_password } =
+      req.body;
 
     const usernameExists = await db.doesUsernameExist(username);
     if (usernameExists) {
       return res
         .status(400)
         .render("sign-up", { errors: [{ msg: "Username already exists" }] });
+    }
+
+    const isPasswordMatch = password === confirm_password;
+    if (!isPasswordMatch) {
+      return res
+        .status(400)
+        .render("sign-up", { errors: [{ msg: "Passwords do not match" }] });
     }
 
     const hashedPassword = await bcrpyt.hash(password, 10);
