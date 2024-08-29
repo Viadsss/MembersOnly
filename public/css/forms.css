@@ -23,8 +23,10 @@ label {
   margin-bottom: 0.5rem;
 }
 
+textarea,
 input[type="text"],
 input[type="password"] {
+  font-size: 1rem;
   width: 100%;
   background: var(--light-grey);
   color: white;
@@ -35,13 +37,18 @@ input[type="password"] {
   box-sizing: border-box;
 }
 
+textarea {
+  resize: vertical;
+}
+
+textarea:focus,
 button:focus,
 input[type="text"]:focus,
 input[type="password"]:focus {
   border-color: var(--swamp-yellow);
   outline: none;
   box-shadow: 0 0 0 0.2rem rgba(223, 230, 15, 0.25);
-  transition: all 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 button {
