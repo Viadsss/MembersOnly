@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS messages (
 INSERT INTO users (first_name, last_name, username, password, is_member, is_admin)
 VALUES 
     ('John', 'Doe', 'johndoe', '$2a$10$aB8ScB41woadh9X.W6WxM.dCYIfNtn2ytZ89E7kvB4vPMoaTGtUju', TRUE, FALSE),
-    ('Jane', 'Smith', 'janesmith', '$2a$10$Ygj4U6SiiH7gMc9Na7ZzyOxAE71PqpjHOP5w9PgaZClMxu1mZ38RC', FALSE, TRUE);
+    ('Jane', 'Smith', 'janesmith', '$2a$10$Ygj4U6SiiH7gMc9Na7ZzyOxAE71PqpjHOP5w9PgaZClMxu1mZ38RC', FALSE, FALSE);
 
 INSERT INTO messages (author_id, title, content)
 VALUES 
