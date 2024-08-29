@@ -155,7 +155,7 @@ exports.joinClubPost = asyncHandler(async (req, res) => {
   }
 
   await db.updateMemberStatus(id);
-  res.render("join-club", { success: true });
+  res.render("join-club", { user: req.user, success: true });
 });
 
 exports.adminGet = [
