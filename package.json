@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon app.js",
+    "start": "node app.js",
     "populate": "node db/populate.js"
   },
   "keywords": [],
