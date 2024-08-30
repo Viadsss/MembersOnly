@@ -2,7 +2,9 @@
 
 HideSpot is an exclusive clubhouse app where members can write anonymous posts. Inside the clubhouse, members can see the authors of posts, but outside, they can only view the content and wonder who wrote it. This project is designed to practice authentication, session management, and database skills.
 
-![Index Page](Index.png)
+This project was created as part of The [Odin Project's Node.js course](https://www.theodinproject.com/paths/full-stack-javascript/courses/nodejs). The specific assignment is titled "[Project: Members Only](https://www.theodinproject.com/lessons/node-path-nodejs-members-only)," which focuses on building an exclusive clubhouse application with authentication and database management
+
+You can view the live version of the application [here](https://hidespot.up.railway.app/)
 
 ## Table of Contents
 
