@@ -70,7 +70,7 @@ Make sure to replace the placeholder values with your actual configuration detai
    npm run populate <db-url>
    ```
 
-   Replace <db-url> with either `DB_URL_DEV` or `DB_URL_PROD `based on your environment. Ensure `NODE_ENV` is correctly set in your `.env` file.
+   Replace <db-url> with either `DB_URL_DEV` or `DB_URL_PROD` based on your environment. Ensure `NODE_ENV` is correctly set in your `.env` file.
 
 5. Start the application:
    ```bash
