@@ -40,8 +40,8 @@ Before running the HideSpot application, set up your environment by creating a `
 
 ```plaintext
 NODE_ENV=development
-DB_URL_PROD=postgres://user:password@localhost:5432/hidespot_prod
-DB_URL_DEV=postgres://user:password@localhost:5432/hidespot_dev
+DB_URL_PROD=postgres://user:password@localhost:5432/db_name
+DB_URL_DEV=postgres://user:password@localhost:5432/db_name
 PORT=3000
 SESSION_SECRET=your-secret-key
 ```
@@ -64,7 +64,17 @@ Make sure to replace the placeholder values with your actual configuration detai
    npm install
    ```
 
-4. Populate the database:
+4. Set up the PostgreSQL database:
+
+   Create the database: Ensure you have PostgreSQL installed. Create a new database for your project using the database names specified in your .env file. You can use a command like:
+
+   ```bash
+   createdb db_name
+   ```
+
+Replace `db_name` with the name you plan to use.
+
+5. Populate the database:
 
    ```bash
    npm run populate <db-url>
@@ -72,7 +82,7 @@ Make sure to replace the placeholder values with your actual configuration detai
 
    Replace <db-url> with either `DB_URL_DEV` or `DB_URL_PROD` based on your environment. Ensure `NODE_ENV` is correctly set in your `.env` file.
 
-5. Start the application:
+6. Start the application:
    ```bash
    npm start
    ```
